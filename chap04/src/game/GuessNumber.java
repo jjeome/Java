@@ -2,44 +2,35 @@ package game;
 
 import java.util.Scanner;
 
-public class GuessNum {
+public class GuessNumber {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		int random = (int) (Math.random() * 100) + 1;
-		System.out.println("1~100까지의 숫자 만들기 게임!");
-		System.out.println("기회는 총 10번입니다.");
-		System.out.println("그럼 시작!");
-		int[] num = new int[10];
-		int count=0;
-		
-		for (int i = 0; i < 10; i++) {
+		int random = (int) (Math.random()*10)+1; //컴퓨터 랜덤값
+		int num[i] = new int[10]; //내가 입력하는 값
+		String result;
+		int count = 0;
+		// 숫자끼리 비교 맞으면 종료
+		do {
 			count++;
+			
 			num[i] = scan.nextInt();
 			
-			if (random > num[i]) {
-				System.out.println("Player가 입력한 수: "+num[i]);
-				System.out.println("틀렸습니다.");
-				System.out.println("수가 낮습니다.");
-				System.out.println("남은 횟수는: "+(10-count));
-			} else if (random < num[i]) {
-				System.out.println("Player가 입력한 수: "+num[i]);
-				System.out.println("틀렸습니다.");
-				System.out.println("수가 높습니다.");
-				System.out.println("남은 횟수는: "+(10-count));
-			} else if (random == num[i]) {
-				System.out.println("Player가 입력한 수: "+num[i]);
-				System.out.println("정답입니다.");
-				System.out.println("게임을 종료합니다.");
+			if (random > ) {
+				result = "크다";
+			} else if (random < num){
+				result = "작다";
+			} else {
+				result ="맞다";
+			}
+	
+			if(count >= 5) {
 				break;
 			}
 			
-			if (count==10) {
-				System.out.println("\n10번이 끝났습니다. \n게임을 종료합니다.");
-				break;
-			}
-			
-		}
+			System.out.println(result);
+		} while(true);	
+		System.out.println("프로그램 종료");
 	}
 
 }
