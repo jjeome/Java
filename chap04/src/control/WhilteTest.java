@@ -12,7 +12,7 @@ public class WhilteTest {
 		//for1();
 		//for2();
 		//gugudan1();
-		//findMax(); //최댓값
+		//findMax(); 
 		//findMin();
 		findMinMax();
 	}
