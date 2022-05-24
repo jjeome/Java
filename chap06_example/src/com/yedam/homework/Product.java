@@ -33,7 +33,7 @@ public class Product {
 	}
 	
 	//제품별 가격 출력
-	public void showInfo() { //->이거나 위에꺼나 사용하기.
+	public void showInfo() { 
 		System.out.println(name + ":"+ price);
 	}
 }

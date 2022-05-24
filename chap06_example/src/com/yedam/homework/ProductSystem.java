@@ -31,9 +31,31 @@ public class ProductSystem {
 		for (int i = 0; i <= index; i++) {
 			Product product = list[i];// product의 필드값 어떻게 출력할것인가?
 			System.out.println(product.getName() + ":" + product.getPrice());
-			list[i].showInfo();
+			//list[i].showInfo();
 		}
 
+	}
+	
+	// 4. 분석 - 최고가격
+	int printMax() {
+		int max = list[0].getPrice();
+		for(int i=0; i < list.length; i++) {
+			if(max < list[i].getPrice()) {
+				max = list[i].getPrice();
+			}
+		}
+		return max;
+	}
+	
+	//4.분석 - 총합
+	int printSum() {
+		int sum = 0;
+		int result = 0;
+		for(int i=0; i<=index; i++) {
+			sum += list[i].getPrice();
+		}
+		result = (sum - printMax());
+		return result;
 	}
 
 }
