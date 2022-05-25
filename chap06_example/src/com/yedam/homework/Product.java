@@ -7,12 +7,12 @@ public class Product {
 	private int price;
 	
 	//생성자
-	public Product() {} //default 생성자는 setter로 값을 초기화 및 수정 해야함.
+	public Product() {}
 	
 	public Product(String name, int price) {
 		this.name = name;
 		this.price = price;
-	} // 초기화 시킨 생성자는 getter로 조회만 하면 됨.
+	}
 	
 	
 	//메소드
@@ -32,9 +32,8 @@ public class Product {
 		return price;
 	}
 	
-	/*제품별 가격 출력
+	//제품별 가격 출력
 	public void showInfo() { 
 		System.out.println(name + ":"+ price);
 	}
-	*/
 }

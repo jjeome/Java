@@ -36,33 +36,26 @@ public class ProductSystem {
 
 	}
 	
-	// 4. 분석 - 최고가격 제품
-	Product printMax() {
-		Product test = new Product();
-		String maxName = null;
+	// 4. 분석 - 최고가격
+	int printMax() {
 		int max = list[0].getPrice();
-		
-		for(int i=0; i <= index; i++) {
+		for(int i=0; i < list.length; i++) {
 			if(max < list[i].getPrice()) {
 				max = list[i].getPrice();
-				maxName = list[i].getName();
 			}
-			
 		}
-		test.setName(maxName);
-		test.setPrice(max);
-		return test;
+		return max;
 	}
 	
-	//4.분석 - 총합 -> 최고가격이 1개라는 전제하에 총합구하기.
+	//4.분석 - 총합
 	int printSum() {
 		int sum = 0;
 		int result = 0;
 		for(int i=0; i<=index; i++) {
 			sum += list[i].getPrice();
 		}
-		result = (sum - printMax().getPrice());//총합에서 최고가격을 제외하는건 한번만 뺀다는것.
-		return result; //만약 최고가격이 2개이상이면 몇개를 제외할건지 정해야함.
+		result = (sum - printMax());
+		return result;
 	}
 
 }
