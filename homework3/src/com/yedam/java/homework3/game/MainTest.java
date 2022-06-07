@@ -4,7 +4,8 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		//new MainProgram();
-		new RandomGame();
+		//new RandomGame();
+		new ProffesorRandomGame();
 	}
 
 }
