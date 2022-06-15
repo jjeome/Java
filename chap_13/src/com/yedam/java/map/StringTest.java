@@ -9,7 +9,8 @@ public class StringTest {
 
 	public static void main(String[] args) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-
+		int i = map.get("동장군");
+		
 		map.put("신윤권", 85);
 		map.put("홍길동", 95);
 		map.put("동장군", 80);
@@ -28,7 +29,9 @@ public class StringTest {
 		
 		//중복되지 않게 하기위해서 값을 하나씩 꺼내보는것
 		Set<String> keySet = map.keySet();
+		//iterator로 순서를 만들어줌(자신의 앞 뒤 연결)
 		Iterator<String> keyIterator = keySet.iterator();
+		//반복문으로 다음 순서 확인 후 순서가 없을때까지 돌아감)
 		while(keyIterator.hasNext()) {
 			String key = keyIterator.next();
 			Integer value = map.get(key);
@@ -47,7 +50,10 @@ public class StringTest {
 		map.remove("홍길동");
 		
 		//Set컬렉션 key가 아니라 entry 구조로.(중첩 인터페이스)
+		//key, value를 하나의 entry로 봄.
+		//entry를 담는 set
 		Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
+		//순서 정리
 		Iterator<Map.Entry<String, Integer>> entryIterator = entrySet.iterator();
 		while(entryIterator.hasNext()){
 			Map.Entry<String, Integer> entry = entryIterator.next();
