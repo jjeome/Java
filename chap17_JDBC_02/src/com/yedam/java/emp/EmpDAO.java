@@ -146,7 +146,7 @@ public class EmpDAO {
 	public void insert(Employee emp) {
 		try {
 			connect();
-			String sql = "INSERT INTO employees VALUE(?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO employees VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmployeeId()); //insert sql문안에 int타입인 1000으로 첫번재 물음표를 대체한다는 뜻(타입(몇번째,값))
 			pstmt.setString(2, emp.getFirstName());
@@ -204,7 +204,7 @@ public class EmpDAO {
 	public void delete(int employeeId) {
 		try {
 			connect();
-			String sql = "DELETE FROM employees WHERE employee_id"+employeeId;
+			String sql = "DELETE FROM employees WHERE employee_id = "+employeeId;
 			stmt = conn.createStatement();
 			int result = stmt.executeUpdate(sql);
 			

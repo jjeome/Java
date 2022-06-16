@@ -17,10 +17,11 @@ public class Employee {
 	private double commission;
 	private int managerId;
 	private int departmentId;
+	
+	//getter, setter
 	public int getEmployeeId() {
 		return employeeId;
 	}
-	//getter, setter
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
