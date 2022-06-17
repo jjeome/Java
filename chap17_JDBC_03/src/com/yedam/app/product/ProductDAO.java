@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.yedam.app.common.DAO;
 
+import oracle.net.aso.l;
+
 public class ProductDAO extends DAO{
 	//싱글톤
 	private static ProductDAO productDAO = null;
@@ -23,7 +25,7 @@ public class ProductDAO extends DAO{
 		try {
 			connect();
 			//시퀀스로 되어있기 때문에 ? 전에 시퀀스 값 넣어줘야함 (시퀀스와 연결해줘야함)
-			String sql = "INSERT INTO product VALUES (product_seq.nextval, ?, ?";
+			String sql = "INSERT INTO product VALUES (product_seq.nextval, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,product.getProductName());
 			pstmt.setInt(2,product.getProductPrice());
@@ -112,9 +114,10 @@ public class ProductDAO extends DAO{
 		Product pro = null;
 		try {
 			connect();
-			String sql = "SELECT * FROM product ORDER BY product_id = "+productId;
+			String sql = "SELECT * FROM product WHERE product_id = "+productId;
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
+		
 			while(rs.next()) {
 				pro = new Product();
 				pro.setProductId(rs.getInt("product_id"));
@@ -135,9 +138,14 @@ public class ProductDAO extends DAO{
 		Product pro = null;
 		try {
 			connect();
-			String sql = "SELECT * FROM product ORDER BY product_name = "+productName;
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			//String sql = "SELECT * FROM product ORDER BY product_name = '"+productName+"'";
+			//stmt = conn.createStatement();
+			//rs = stmt.executeQuery(sql);
+			String sql = " SELECT * FROM product WHERE product_name = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productName);
+			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				pro = new Product();
 				pro.setProductId(rs.getInt("product_id"));

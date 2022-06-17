@@ -1,8 +1,10 @@
 package com.yedam.java.home;
 
+//vo클래스(datatransfer):정보를 저장하는 클래스 - 필드 ,게터, 세터만 가짐
 public class Book {
 
 	//필드
+	//인스턴스에 독립적으로 정보를 가지는 애들
 	private long ISBN;
 	private String bookName;
 	private int bookPrice;
