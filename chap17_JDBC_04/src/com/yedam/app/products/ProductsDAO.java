@@ -8,6 +8,16 @@ import com.yedam.app.common.DAO;
 
 //sql문 db에서 쿼리문 실행되는지 확인하고 자바에 들고오기
 public class ProductsDAO extends DAO{
+	//싱글톤
+	private static ProductsDAO productsDAO = null;
+	private ProductsDAO () {}
+	public static ProductsDAO getInstance() {
+		if(productsDAO == null) {
+			productsDAO = new ProductsDAO();
+		}
+		return productsDAO;
+	}
+	
 	//등록 -> 매개변수로 vo 객체 넘어옴(일부 값만 한다 하더라도 vo객체) 
 	public void insert(Product product) {
 		try {
@@ -38,7 +48,7 @@ public class ProductsDAO extends DAO{
 	}
 	
 	//수정 - 재고
-	public void update(Product product) {
+	public void updateStock(Product product) {
 		try {
 			connect();
 			//바로 메소드를 넣어줘도됨 -> 이 상태에서 preparedStatement써도 상관은 없음
@@ -61,6 +71,33 @@ public class ProductsDAO extends DAO{
 			disconnect();
 		}
 	}
+	
+	//수정 - 재고제외(이름, 가격에 대해서)
+	public void updateInfo(Product product) {
+		try {
+			connect();
+			String sql = "UPDATE products SET product_name = ?, product_price = ? WHERE product_id =?"; //set절에 하나의 컬럼들을 나눠서 적어줘도 됨
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, product.getProductName());
+			pstmt.setInt(2, product.getProductPrice());
+			pstmt.setInt(2, product.getProductId());
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result>0) {
+				System.out.println("정상적으로 수정되었습니다.");
+			} else {
+				System.out.println("정상적으로 수정되지 않았습니다");
+			}
+					
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
+	
 	
 	//삭제 -> 매개변수에 vo클래스 다 넣지말고 보통 DB 테이블의 기본키로 삭제함
 	public void delete(int productId) {
