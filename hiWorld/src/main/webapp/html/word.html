@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>word.html</title>
+  <style>
+    #show{
+      width: 350px;
+      height: 370;
+      background-color: orange;
+    }
+
+    #show > span{
+      display: inline-block;
+      width: 100px;
+      height: 25px;
+      background-color: aqua;
+      border: 1px solid black;
+      padding: 2px;
+      margin: 2px;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" name="userInput" id="userInput">
+  <div id="show"></div>
+ <script>
+  let words = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aut omnis repellendus doloribus explicabo dolorem blanditiis tempore temporibus, consequuntur aspernatur at hic! Nobis expedita modi soluta unde ratione iusto minima?';
+  let wordList = words.split(' ');
+  let show = document.getElementById('show');
+    for(let word of wordList){
+      let span = document.createElement('span');
+      span.innerText = word; // <span>Lorem</span>
+      show.append(span);
+    }
+
+    //userInput : change가 발생할 때 마다 화면에 똑같은 있는 단어를 지우기.
+    
+    let loremWord = document.querySelector('#userInput');
+    let spanTags = document.querySelectorAll('span');
+    loremWord.onchange = selectWord;
+
+    function selectWord(){
+
+      for(let loword of spanTags){
+        //input태그는 value값이 있고, span태그는 value값이 없어서 innerText값으로 비교
+        if(loword.innerText == loremWord.value){
+          loword.remove();
+          loremWord.value='';       
+        } 
+      }
+    }
+
+ </script>
+</body>
+</html>
