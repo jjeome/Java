@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>회원정보</h3>
+  <form action="queryTest" method="post">
+    ID : <input type="text" name="id" value="user1"><br> 
+    PassWord : <input type="password" name="pwd" value="1234"><br>
+    Name : <input type="text" name="name" value="최현정"><br>
+    Hobby : <input type="checkbox" name="hobby" value="climbing">Climbing
+            <input type="checkbox" name="hobby" value="sports">Exercise
+            <input type="checkbox" name="hobby" value="reading">Reading
+            <input type="checkbox" name="hobby" value="Traveling" checked>Traveling<br>
+    Gender : <input type="radio" name="gender" value="male">Male
+             <input type="radio" name="gender" value="female" checked>Female<br>
+    Religion : <select name="religion">
+                <option value="christianity">Christianity</option>
+                <option value="buddhism">Buddhism</option>
+                <option value="catholicism">Catholicism</option>
+                <option value="atheism" selected>Atheism</option>
+               </select><br>
+    Self-Introduction : <br>
+    <textarea name="introduction" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="전송">
+    <input type="reset" value="초기화">
+  </form>
+  <script>
+    console.log(decodeURI("%EC%B5%9C%ED%98%84%EC%A0%95"));
+    console.log(encodeURI("최현정"));
+
+    let str = 'id=user1&pwd=1234&name=최현정&hobby=Traveling&gender=female&religion=atheism&introduction=dd';
+    let result = getParameter(str, 'pwd');
+
+    //queryString으로 param에서 값을 찾음
+    function getParameter(queryString, param){
+      let re = [];
+      re = queryString.split('&');
+      for(let a of re){
+        if(a.indexOf(param)!= -1){
+          return a.substring(param.length+1);
+        }
+      }
+    }
+    console.log(result);
+
+  </script>
+</body>
+
+</html>
