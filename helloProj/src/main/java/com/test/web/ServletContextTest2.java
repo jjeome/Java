@@ -1,4 +1,4 @@
-package com.tet.web;
+package com.test.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
