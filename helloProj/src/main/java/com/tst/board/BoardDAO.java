@@ -30,7 +30,7 @@ public class BoardDAO extends DAO {
 	
 	}
 	
-	//목록
+	//전체조회
 	public List<BoardVO> bList(){
 		//첫번째 칼럼을 기준으로 오름차순으로 정렬
 		String sql = "SELECT * FROM board ORDER BY 1";
@@ -110,6 +110,74 @@ public class BoardDAO extends DAO {
 		} finally {
 			disconnect();	
 		}
+	}
+	
+	public void updateBoard(BoardVO vo) {
+		String sql ="UPDATE board SET title=?, content=? WHERE board_id=?";
+		
+		try {
+			connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setInt(3, vo.getBoardId());
+			
+			//쿼리 실행
+			int rs = pstmt.executeUpdate();
+			System.out.println(rs+"건 변경.");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+
+	//삭제
+	public void deleteBoard(BoardVO vo) {
+		String sql = "DELETE FROM board WHERE board_id=?";
+		
+		try {
+			connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getBoardId());
+			
+			int rs = pstmt.executeUpdate();
+			System.out.println(rs+"건 삭제");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
+	//로그인체크
+	public UserVo loginCheck(String id, String pwd) {
+		String sql = "SELECT * FROM users WHERE id=? AND password=?";
+		
+		try {
+			connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				UserVo vo = new UserVo();
+				vo.setId(rs.getString("id"));
+				vo.setPwd(rs.getString("password"));
+				vo.setName(rs.getString("name"));
+				
+				return vo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		//조회된 결과가 없으면 null 반환
+		return null;
 	}
 }
 

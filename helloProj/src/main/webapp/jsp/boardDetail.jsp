@@ -29,6 +29,39 @@
 	<tr><th>조회수</th><td><%=vo.getCount() %></td></tr>
 	</table>
 	<p />
-	<a href="boardList.jsp">글목록</a>
+	<%
+		
+		String loginId = (String) session.getAttribute("loginId");
+		//로그인 id와 작성자가 같을때만 보여주기
+		//로그인 아이가 null값이 아닐때 보여주기
+		if(loginId != null && loginId.equals(vo.getWriter())) {
+		}
+	%>	
+		
+	<a href="updateForm.jsp?bno=<%=vo.getBoardId() %>">수정</a>
+	<a href="deleteForm.jsp?bno=<%=vo.getBoardId() %>">삭제</a>
+	
+	<a href="boardList.jsp">글 목록</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
