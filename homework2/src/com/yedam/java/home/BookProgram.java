@@ -43,7 +43,7 @@ public class BookProgram implements Program{
 
 	
 	private int inputISBN() {
-		System.out.println("검색 ISBN> ");
+		System.out.println("ISBN 검색> ");
 		return sc.nextInt();
 	}
 	
