@@ -36,10 +36,14 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberJoinForm.do", new MemberJoinFormControl()); // 회원가입화면.
 		mappings.put("/memberJoin.do", new MemberJoinControl()); // 회원가입화면.
 		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.
+	
 		mappings.put("/addBoard.do", new AddBoardControl()); //게시글 등록 화면
 		mappings.put("/insertBoard.do", new InsertBoardControl()); // 게시글 등록 처리
 		mappings.put("/boardList.do", new BoardListControl()); // 게시글 목록
 		mappings.put("/boardListPaging.do", new BoardListPagingControll()); //페이징 처리
+		
+		mappings.put("/cartList.do", new CartListControl());
+		mappings.put("/cartUpdate.do", new CartUpdateControl());
 	}
 
 	@Override

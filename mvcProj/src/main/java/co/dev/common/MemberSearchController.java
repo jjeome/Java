@@ -36,8 +36,10 @@ public class MemberSearchController implements Controller {
 		if(vo == null) {
 			req.setAttribute("result", "검색된 정보가 없습니다.");
 		}
+		
 		//id를 받아서 member에 담
-		req.setAttribute("member", service.getMember(id));
+		req.setAttribute("member", vo);
+		
 		
 		if(job.equals("search")) {
 			Utils.forward(req, resp, "memberResult/memberSearchOutput.jsp");

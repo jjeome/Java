@@ -38,6 +38,6 @@ public class MemberVO {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	
+
 	
 }

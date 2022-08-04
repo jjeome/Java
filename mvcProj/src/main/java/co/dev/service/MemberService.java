@@ -38,7 +38,7 @@ public class MemberService {
 	}
 	
 	//회원 삭제
-	public void throwMember(MemberVO vo) {
-		dao.deleteMember(vo);
+	public boolean throwMember(MemberVO vo) {
+		return dao.deleteMember(vo);
 	}
 }

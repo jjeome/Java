@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.vo.BoardVO;
+import co.edu.vo.CartVO;
 import co.edu.vo.Criteria;
 
 public class BoardDAO {
@@ -142,6 +143,50 @@ public class BoardDAO {
 		}
 		return listPage;
 	}
+		
+		//카트 전체 데이터 
+		public List<CartVO> cartList(){
+			String sql = "select * from cart";
+			List<CartVO> cartList = new ArrayList<>();
+			connect();
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					CartVO cart = new CartVO();
+					cart.setNum(rs.getInt("no"));
+					cart.setProductNm(rs.getString("product_nm"));
+					cart.setPrice(rs.getInt("price"));
+					cart.setQty(rs.getInt("qty"));
+					
+					cartList.add(cart);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return cartList;
+		}
+
+		//변경
+		public void updateCart(int num, int qty) {
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	

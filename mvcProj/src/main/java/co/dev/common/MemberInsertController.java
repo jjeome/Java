@@ -14,6 +14,8 @@ public class MemberInsertController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		resp.setContentType("text/json;charset=utf-8");
+		
 		MemberService service = MemberService.getInstance();
 		//파라미터 읽어들이기
 				String id = req.getParameter("id");

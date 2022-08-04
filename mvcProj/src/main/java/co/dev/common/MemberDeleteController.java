@@ -22,7 +22,7 @@ public class MemberDeleteController implements Controller {
 				service.throwMember(vo);
 				
 				// 공유 : vo
-				req.setAttribute("member", vo);
+				req.setAttribute("id", vo);
 				
 				//처리된 결과를 페이지로 넘기기
 				Utils.forward(req, resp, "memberResult/memberDeleteOutput.jsp");

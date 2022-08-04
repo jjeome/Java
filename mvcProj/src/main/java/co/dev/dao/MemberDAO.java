@@ -106,7 +106,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				MemberVO vo = new MemberVO();
-				vo.setId("id");
+				vo.setId(rs.getString("id"));
 				vo.setMail(rs.getString("mail"));
 				vo.setName(rs.getString("name"));
 				vo.setPasswd(rs.getString("passwd"));
@@ -145,7 +145,7 @@ public class MemberDAO {
 	}
 	
 	//정보 삭제
-	public void deleteMember(MemberVO vo) {
+	public boolean deleteMember(MemberVO vo) {
 		String sql="DELETE FROM member WHERE id = ? ";
 		
 		connect();
@@ -154,13 +154,16 @@ public class MemberDAO {
 			pstmt.setString(1, vo.getId());
 			
 			int r = pstmt.executeUpdate();
-			System.out.println(r+"건 삭제됨");
+			if(r==1) {
+				System.out.println(r+"건 삭제됨");
+				return true;
+			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-		
+		return false;
 	}
 
 }
